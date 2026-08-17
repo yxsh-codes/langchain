@@ -1,10 +1,10 @@
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
 
-chat_template = ChatPromptTemplate([
-    ('system', 'You are a helpful {domain} expert'),
-    ('human', 'Explain in simple terms, what is {topic}')
-])
+load_dotenv()
 
-prompt = chat_template.invoke({'domain':'cricket','topic':'Dusra'})
+model = ChatOpenAI(model='gpt-4', temperature=1.5)
 
-print(prompt)
+result = model.invoke("Write a 5 line poem on cricket")
+
+print(result.content)
