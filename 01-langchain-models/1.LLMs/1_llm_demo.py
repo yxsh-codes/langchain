@@ -1,10 +1,15 @@
-from langchain_openai import OpenAI
+from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
 from dotenv import load_dotenv
 
 load_dotenv()
 
-llm = OpenAI(model='gpt-3.5-turbo-instruct')
+llm = HuggingFaceEndpoint(
+    model = 'gemini-flash-3.5',
+    task='text-generation'
+)
 
-result = llm.invoke("What is the capital of India")
+model = ChatHuggingFace(llm=llm)
+
+result = model.invoke("What is the capital of India")
 
 print(result)

@@ -1,9 +1,11 @@
-from langchain_openai import OpenAIEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from dotenv import load_dotenv
 
 load_dotenv()
 
-embedding = OpenAIEmbeddings(model='text-embedding-3-large', dimensions=32)
+embedding = HuggingFaceEndpointEmbeddings(
+    repo_id='google/embeddinggemma-300m'
+)
 
 documents = [
     "Delhi is the capital of India",
